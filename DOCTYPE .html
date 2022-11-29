@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> Webpage </title>
+		<link rel="stylesheet" href="./styles.css">
+	</head>
+	<body>
+		<div id="center">
+			<div style="justify-content:space-between;"id="main">
+			<p style="text-align:left;"># </p> <p id="text"></p>
+			</div>
+			<div id="main">
+				<div id="column">
+					<button type="button" onclick="numpad(7);">7</button>
+					<button type="button" onclick="numpad(4);">4</button>
+					<button type="button" onclick="numpad(1);">1</button>
+					<button type="button" onclick="numpad(0);">0</button>
+				</div>
+				<div id="column">
+					<button type="button" onclick="numpad(8);">8</button>
+					<button type="button" onclick="numpad(5);">5</button>
+					<button type="button" onclick="numpad(2);">2</button>
+					<button type="button" onclick="decimal();">.</button>
+				</div>
+				<div id="column">
+					<button type="button" onclick="numpad(9);">9</button>
+					<button type="button" onclick="numpad(6);">6</button>
+					<button type="button" onclick="numpad(3);">3</button>
+					<button type="button" onclick="equal();">=</button>
+				</div>
+				<div id="column">
+					<button type="button" onclick="divide();">÷</button>
+					<button type="button" onclick="multiply();">x</button>
+					<button type="button" onclick="subtract();">-</button>
+					<button type="button" onclick="add();">+</button>
+				</div>
+				<div>
+					<button type="button" id="reset" onclick="reset();">⟳</button>
+				</div>
+			</div>
+			<p id="history" style="text-align:left; font-size:20px;">History <button style="font-size:20px;" type="button" onclick="histClear();"> Clear </button> <br>━━━━━━━━━━━━━━━━━━━━━━━━━<br> 
+				</p>	
+
+		</div>
+		<!--<button type="button" onclick="getInputValue();">Add</button> -->
+						<!-- <button type="button" onclick="reset();"> reset </button> -->
+		<script>
+			
+		var x = 0;
+		var decimalCheck = 1;
+		var operator;
+			
+		function histClear(){
+						document.getElementById("history").innerHTML = 'History <button style="font-size:20px;"  type="button" onclick="histClear();"> Clear </button> <br>━━━━━━━━━━━━━━━━━━━━━━━━━<br>'
+
+		}
+			
+		function br(){
+		document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + '<br>━━━━━━━━━━━━━━━━━━━━━━━━━<br>'
+		}
+			
+		function equal(){
+			if (operator == 'add'){
+								updateHist('');
+			document.getElementById("text").innerHTML = parseFloat(document.getElementById("text").innerHTML) + parseFloat(x);
+												updateHist('answer');
+
+			}	else if (operator == 'subtract'){
+								updateHist('');
+			document.getElementById("text").innerHTML = parseFloat(x) - parseFloat(document.getElementById("text").innerHTML);	
+								updateHist('answer');
+
+
+			}	else if (operator == 'multiply'){
+								updateHist('');
+			document.getElementById("text").innerHTML = parseFloat(document.getElementById("text").innerHTML) * parseFloat(x);	
+												updateHist('answer');
+
+
+			}	else if (operator== 'divide'){
+								updateHist('');
+				document.getElementById("text").innerHTML = parseFloat(x)
+ / parseFloat(document.getElementById("text").innerHTML);
+								updateHist('answer');
+			}
+			
+			
+		}
+		function numpad(input){
+		document.getElementById("text").innerHTML =  document.getElementById("text").innerHTML + input;
+		}
+			
+		function updateHist(op){
+			document.getElementById("history").innerHTML += document.getElementById("text").innerHTML + ' ' + op;
+			br();
+		}
+			
+		function add(){
+			updateHist('add');
+			clear('add');
+		}
+			
+		function subtract(){
+			updateHist('subtract');
+			clear('subtract');
+		}
+		function multiply(){
+			updateHist('multiply');
+			clear('multiply');
+		}
+		function divide(){
+			updateHist('divide');
+			clear('divide');	
+		}
+		function clear(input){
+			if (document.getElementById("text").innerHTML != ''){
+			x = (document.getElementById("text").innerHTML);
+			document.getElementById("text").innerHTML = '';
+			operator = input;
+			}			
+		}
+		function decimal(){
+			if (decimalCheck == 1){
+			document.getElementById("text").innerHTML =  document.getElementById("text").innerHTML + '.';
+			decimalCheck = 0;
+			}
+		}
+			
+		function numpad(input){
+		document.getElementById("text").innerHTML =  document.getElementById("text").innerHTML + input;
+		}
+		
+		function reset(){
+			document.getElementById("text").innerHTML = '';	
+			x = 0;
+			y = 0;
+		} 
+		</script>
+
+    
+
+	</body>
+</html>
